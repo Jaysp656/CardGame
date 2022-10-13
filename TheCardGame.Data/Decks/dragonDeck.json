@@ -1,0 +1,16 @@
+{
+  "Name": "Dragon Deck",
+  "Description": "A deck of dragons and gold!",
+  "Cards": [
+    {
+      "Name": "Red Dragon",
+      "Description": "From within a lava planet lives the red dragons",
+      "CardType" :  "default",
+      "Attributes": [ "fire" ],
+      "Properties": {
+        "Attack": "5",
+        "Defense":  "4"
+      }
+    }
+  ]
+}

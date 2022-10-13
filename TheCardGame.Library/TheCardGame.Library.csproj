@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties decks_4dragondeck_1json__JsonSchema="https://appsemble.app/api.json" /></VisualStudio></ProjectExtensions>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheCardGame.Data\TheCardGame.Data.csproj" />
+    <ProjectReference Include="..\TheCardGame.Infrastructure\TheCardGame.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

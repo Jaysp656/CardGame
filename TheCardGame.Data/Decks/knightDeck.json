@@ -1,0 +1,15 @@
+{
+  "Name": "Knight Deck",
+  "Description": "A deck of knights and honor",
+  "Cards": [
+    {
+      "Name": "Young Knight",
+      "Description": "New to being a knight he looks to make his name in killing dragons.",
+      "Attributes": ["human"],
+      "Properties": {
+        "Attack": "4",
+        "Defense": "5"
+      }
+    }
+  ]
+}

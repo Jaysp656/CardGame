@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCardGame.Console", "TheCardGameConsole\TheCardGame.Console.csproj", "{9C4791E4-0593-4E59-AD8E-C7E4C2DC2854}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCardGame.Library", "TheCardGame.Library\TheCardGame.Library.csproj", "{7B4A78E0-8CDF-4D79-8933-11CC864519DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCardGame.Data", "TheCardGame.Data\TheCardGame.Data.csproj", "{A74CE543-FC24-4B54-838A-856C1AC02077}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCardGame.Infrastructure", "TheCardGame.Infrastructure\TheCardGame.Infrastructure.csproj", "{E4AFE9CB-2B8E-4A44-86CB-F768F7321ADA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCardGame.Domain", "TheCardGame.Domain\TheCardGame.Domain.csproj", "{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C4791E4-0593-4E59-AD8E-C7E4C2DC2854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C4791E4-0593-4E59-AD8E-C7E4C2DC2854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C4791E4-0593-4E59-AD8E-C7E4C2DC2854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C4791E4-0593-4E59-AD8E-C7E4C2DC2854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B4A78E0-8CDF-4D79-8933-11CC864519DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B4A78E0-8CDF-4D79-8933-11CC864519DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B4A78E0-8CDF-4D79-8933-11CC864519DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B4A78E0-8CDF-4D79-8933-11CC864519DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A74CE543-FC24-4B54-838A-856C1AC02077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A74CE543-FC24-4B54-838A-856C1AC02077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A74CE543-FC24-4B54-838A-856C1AC02077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A74CE543-FC24-4B54-838A-856C1AC02077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4AFE9CB-2B8E-4A44-86CB-F768F7321ADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4AFE9CB-2B8E-4A44-86CB-F768F7321ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4AFE9CB-2B8E-4A44-86CB-F768F7321ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4AFE9CB-2B8E-4A44-86CB-F768F7321ADA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E6744A6-DC72-4772-AEE0-A1ED19EA70D5}
+	EndGlobalSection
+EndGlobal
