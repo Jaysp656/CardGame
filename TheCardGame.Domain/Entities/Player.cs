@@ -11,5 +11,6 @@ namespace TheCardGame.Domain.Entities
         public IHand? Hand { get; set; }
         public IActions? Actions { get; set; }
         public IDeck? Deck { get; set; }
+        public bool Quit { get; set; }
     }
 }

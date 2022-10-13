@@ -7,5 +7,6 @@
         IDeck Deck { get; set; }
         IHand Hand { get; set; }
         IActions Actions { get; set; }
+        bool Quit { get; set; }
     }
 }

@@ -15,7 +15,8 @@ namespace TheCardGame.Library
 
         private void LoadDecks() {
             //NOTE: Could load this based on "type"
-            foreach (var deck in DeckJsonLoader.LoadDecks()) {
+            IEnumerable<DeckModel> decks = DeckJsonLoader.LoadDecks();
+            foreach (var deck in decks) {
                 Deck newDeck = new Deck {
                     Name = deck.Name,
                     Description = deck.Description,

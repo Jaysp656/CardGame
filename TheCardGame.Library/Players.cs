@@ -1,10 +1,13 @@
 ﻿using TheCardGame.Infrastructure.Interfaces;
 
 namespace TheCardGame.Library {
-    public class Players {
+    public class Players : IPlayers {
         private List<IPlayer> _players = new();
+        private IDeckManager _deckManager;
 
-        public Players() {}
+        public Players(IDeckManager deckMgr) {
+            _deckManager = deckMgr ?? throw new ArgumentNullException(nameof(deckMgr));
+        }
 
         public void AddPlayer(IPlayer player) {
             _players.Add(player);
@@ -29,6 +32,18 @@ namespace TheCardGame.Library {
                         player.Hand.AddCard(player.Deck.Cards.Dequeue());
                     }
                 }
+            }
+        }
+
+        public void ShuffleDecks() {
+            foreach (IPlayer player in _players) {
+                ShuffleDeck(player);
+            }
+        }
+
+        public void ShuffleDeck(IPlayer player) {
+            if (player.Deck != null) {
+                _deckManager.Shuffle(player.Deck);
             }
         }
     }
