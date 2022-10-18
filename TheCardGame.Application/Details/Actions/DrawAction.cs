@@ -6,6 +6,7 @@ namespace TheCardGame.Application.Details.Actions {
 
         public override void DoAction(ICardGame game) {
             game.Players.DrawCards(1, game.Players.CurrentPlayer);
+
         }
     }
 }

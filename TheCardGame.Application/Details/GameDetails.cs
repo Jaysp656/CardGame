@@ -14,7 +14,7 @@ namespace TheCardGame.Application.Details
             drawPhase.AddPlayerAction(new DrawAction {
                 Name = "Draw Action",
                 Description = "draws card from player's deck to hand"
-            });
+            }, true);
 
             phases.AddPhase(drawPhase);
             phases.CurrentPhase = drawPhase;

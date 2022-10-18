@@ -22,7 +22,7 @@ namespace TheCardGame.Application.Details {
         }
 
 
-        //TODO: neeed better implementation of actions. Need a way to pass different parameters based on the action...
+        //TODO: need better implementation of actions. Need a way to pass different parameters based on the action...
         public void DoAction(string actionName, ICardGame game) {
             if (Actions.ContainsKey(actionName)) { 
                 Actions.TryGetValue(actionName, out IGameAction selectedAction);

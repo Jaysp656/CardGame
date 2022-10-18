@@ -7,29 +7,30 @@ namespace TheCardGame.Console
 {
     public class TheCardGameApp
     {
-        readonly ICardGameBuilder _gameBuilder;
-        public TheCardGameApp(ICardGameBuilder gameBuilder)
+        readonly ICardGameBuilder GameBuilder;
+        readonly PlayerBuilder.Factory PlayerBuilder;
+        public TheCardGameApp(ICardGameBuilder gameBuilder, PlayerBuilder.Factory playerBuilder)
         {
-            _gameBuilder = gameBuilder;            
+            GameBuilder = gameBuilder ?? throw new ArgumentNullException(nameof(gameBuilder));
+            PlayerBuilder = playerBuilder ?? throw new ArgumentNullException(nameof(playerBuilder));
         }
 
         public void Run()
         {
-            _gameBuilder.AddGamePhases(GameDetails.GetGamePhases());
+            GameBuilder.AddGamePhases(GameDetails.GetGamePhases());
 
+            var playerOne = PlayerBuilder().Name("John").Health(10).Build();
+            var playerTwo = PlayerBuilder().Name("Jane").Health(10).Build();
 
-            var playerOne = new Player { Name = "John", Deck = new Deck(), Hand = new Hand(), Actions = new GameActions(),Health = 10, Quit = false };
-            var playerTwo = new Player { Name = "Jane", Deck = new Deck(), Hand = new Hand(), Actions = new GameActions(), Health = 10, Quit = false };
-
-            _gameBuilder.AddPlayer(playerOne, "Dragon Deck");
-            _gameBuilder.AddPlayer(playerTwo, "Knight Deck");
+            GameBuilder.AddPlayer(playerOne, "Dragon Deck")
+                .AddPlayer(playerTwo, "Knight Deck");
 
 
             //TODO: create class to configure aspects of game?
             //_manager.ConfigureGame()
-            _gameBuilder.InitialCardDrawCount(5);     
+            GameBuilder.InitialCardDrawCount(5);     
             
-            ICardGame cg = _gameBuilder.Build();
+            ICardGame cg = GameBuilder.Build();
 
             cg.Start();
 

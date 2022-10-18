@@ -2,11 +2,11 @@
     public interface IGamePhase {
         string Description { get; set; }
         string Title { get; set; }
-        void AddPlayerAction(IGameAction drawAction);
-        void RemovePlayerAction(IGameAction drawAction);
+        void AddPlayerAction(IGameAction action, bool isCurrentPlayerAction);
+        void RemovePlayerAction(IGameAction drawAction, bool isCurrentPlayerAction);
         IGamePhase? Next();
         void SetNextPhase(IGamePhase next);
         void Start();
-        IGameActions GetPlayerActions();
+        IGameActions GetPlayerActions(bool isCurrentPlayerAction);
     }
 }

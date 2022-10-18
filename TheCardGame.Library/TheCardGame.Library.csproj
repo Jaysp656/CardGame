@@ -9,6 +9,10 @@
   <ProjectExtensions><VisualStudio><UserProperties decks_4dragondeck_1json__JsonSchema="https://appsemble.app/api.json" /></VisualStudio></ProjectExtensions>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TheCardGame.Data\TheCardGame.Data.csproj" />
     <ProjectReference Include="..\TheCardGame.Infrastructure\TheCardGame.Infrastructure.csproj" />
   </ItemGroup>

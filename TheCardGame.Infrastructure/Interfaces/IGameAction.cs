@@ -7,6 +7,6 @@ namespace TheCardGame.Infrastructure.Interfaces
         public string Name { get; }
         public string Description { get; }
         //Func<bool> action { get; }
-        public abstract void DoAction(ICardGame game);
+        void DoAction(ICardGame game);
     }
 }

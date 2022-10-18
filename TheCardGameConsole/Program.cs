@@ -16,12 +16,10 @@ internal class Program
     {      
         var builder = new ContainerBuilder();
         builder.RegisterType<TheCardGameApp>().As<TheCardGameApp>();
-        builder.RegisterType<CardGameBuilder>().As<ICardGameBuilder>().SingleInstance();
-        builder.RegisterType<DeckManager>().As<IDeckManager>().SingleInstance();
-        builder.RegisterType<GameActions>().As<IGameActions>().InstancePerLifetimeScope();
-        builder.RegisterType<CardGame>().As<ICardGame>();
-        builder.RegisterType<Players>().As<IPlayers>();
-        builder.RegisterType<Deck>().As<IDeck>();
+
+        builder.AddApplication();
+        builder.AddDomain();
+        builder.AddLibrary();
 
         return builder.Build();
 

@@ -33,7 +33,7 @@ namespace TheCardGame.Library {
 
         public void NextPhase() {
             _gamePhases.CurrentPhase.Start();
-            Players.CurrentPlayer.Actions = _gamePhases.CurrentPhase.GetPlayerActions();
+            Players.CurrentPlayer.Actions = _gamePhases.CurrentPhase.GetPlayerActions(true);
         }
 
         public void Stop() {

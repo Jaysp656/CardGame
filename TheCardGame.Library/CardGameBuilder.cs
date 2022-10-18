@@ -1,13 +1,11 @@
-﻿using System.Reflection;
-using TheCardGame.Domain.Entities;
-using TheCardGame.Infrastructure.Interfaces;
+﻿using TheCardGame.Infrastructure.Interfaces;
 
 namespace TheCardGame.Library {
     public class CardGameBuilder : ICardGameBuilder
     {
         readonly IDeckManager deckMgr;
         bool playerQuit = false;
-        private ICardGame _cardGame;
+        private ICardGame _cardGame;        
 
         public CardGameBuilder(IDeckManager deckManager, ICardGame cardGame){
             deckMgr = deckManager;
