@@ -1,8 +1,10 @@
-﻿using TheCardGame.Domain.Entities;
+﻿using TheCardGame.Application.Details;
+using TheCardGame.Domain.Entities;
 using TheCardGame.Infrastructure.Interfaces;
 using TheCardGame.Library;
 
-namespace TheCardGame.Console {
+namespace TheCardGame.Console
+{
     public class TheCardGameApp
     {
         readonly ICardGameBuilder _gameBuilder;
@@ -13,8 +15,11 @@ namespace TheCardGame.Console {
 
         public void Run()
         {
-            var playerOne = new Player { Name = "John", Deck = new Deck(), Hand = new Hand(), Health = 10 };
-            var playerTwo = new Player { Name = "Jane", Deck = new Deck(), Hand = new Hand(), Health = 10 };
+            _gameBuilder.AddGamePhases(GameDetails.GetGamePhases());
+
+
+            var playerOne = new Player { Name = "John", Deck = new Deck(), Hand = new Hand(), Actions = new GameActions(),Health = 10, Quit = false };
+            var playerTwo = new Player { Name = "Jane", Deck = new Deck(), Hand = new Hand(), Actions = new GameActions(), Health = 10, Quit = false };
 
             _gameBuilder.AddPlayer(playerOne, "Dragon Deck");
             _gameBuilder.AddPlayer(playerTwo, "Knight Deck");
@@ -27,6 +32,9 @@ namespace TheCardGame.Console {
             ICardGame cg = _gameBuilder.Build();
 
             cg.Start();
+
+            playerOne.Actions.ListActions();
+            playerOne.Actions.DoAction("Draw Action", cg);
         }
     }
 }

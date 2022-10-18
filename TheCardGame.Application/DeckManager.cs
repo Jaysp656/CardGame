@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TheCardGame.Data.Models;
+﻿using TheCardGame.Data.Models;
 using TheCardGame.Data.Queries;
 using TheCardGame.Domain.Entities;
 using TheCardGame.Infrastructure.Interfaces;

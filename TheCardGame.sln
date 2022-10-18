@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCardGame.Data", "TheCard
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCardGame.Infrastructure", "TheCardGame.Infrastructure\TheCardGame.Infrastructure.csproj", "{E4AFE9CB-2B8E-4A44-86CB-F768F7321ADA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCardGame.Domain", "TheCardGame.Domain\TheCardGame.Domain.csproj", "{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCardGame.Domain", "TheCardGame.Domain\TheCardGame.Domain.csproj", "{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCardGame.Application", "TheCardGame.Application\TheCardGame.Application.csproj", "{35F87500-3B88-423D-BFBB-F7F564D7EEF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1033D19-C99A-40B2-9D66-F4BDEFECAA62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35F87500-3B88-423D-BFBB-F7F564D7EEF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F87500-3B88-423D-BFBB-F7F564D7EEF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F87500-3B88-423D-BFBB-F7F564D7EEF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F87500-3B88-423D-BFBB-F7F564D7EEF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

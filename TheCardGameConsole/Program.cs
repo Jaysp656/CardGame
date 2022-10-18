@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using TheCardGame.Application.Details;
 using TheCardGame.Console;
 using TheCardGame.Domain.Entities;
 using TheCardGame.Infrastructure.Interfaces;
@@ -17,11 +18,10 @@ internal class Program
         builder.RegisterType<TheCardGameApp>().As<TheCardGameApp>();
         builder.RegisterType<CardGameBuilder>().As<ICardGameBuilder>().SingleInstance();
         builder.RegisterType<DeckManager>().As<IDeckManager>().SingleInstance();
+        builder.RegisterType<GameActions>().As<IGameActions>().InstancePerLifetimeScope();
         builder.RegisterType<CardGame>().As<ICardGame>();
         builder.RegisterType<Players>().As<IPlayers>();
         builder.RegisterType<Deck>().As<IDeck>();
-
-        //builder.RegisterType<Player>().As<IPlayer>();
 
         return builder.Build();
 

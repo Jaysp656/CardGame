@@ -3,13 +3,12 @@ using TheCardGame.Infrastructure.Interfaces;
 
 namespace TheCardGame.Library {
     public class CardGame : ICardGame {
-        public IPlayers? Players { get; set; }
+        public IPlayers Players { get; set; }
         int ICardGame.InitialDrawCount { get; set; }
 
         public int InitialDrawCount = 0;
         private readonly IDeckManager _deckManager;
-        private GamePhases _gamePhases;
-
+        private GamePhases _gamePhases = new();
 
         public CardGame(IDeckManager deckMgr, IPlayers players) {
             Players = players ?? throw new ArgumentNullException(nameof(players));
@@ -26,22 +25,31 @@ namespace TheCardGame.Library {
             //IPlayer currentPlayer = players.;
             //while (!isGameEnded()) {
             //}
+            
+            NextPhase();
         }
 
         public void DoAction() { }
 
-        public void NextPhase() { }
+        public void NextPhase() {
+            _gamePhases.CurrentPhase.Start();
+            Players.CurrentPlayer.Actions = _gamePhases.CurrentPhase.GetPlayerActions();
+        }
 
         public void Stop() {
             Console.WriteLine("Game has ended");
         }
 
-        
 
+        public void AddGamePhases(IGamePhases gamePhases) {
+            _gamePhases = (GamePhases)gamePhases;
+        }
 
         private bool isGameEnded() {
             //setup rules for game end
             //TODO: setup tie condition?
+            if (Players == null) { throw new Exception("No players exist when checking if game is ended"); }
+
             if (Players.GetPlayers().Where(x => x.Health > 0).Count() == 1) {
                 IPlayer winner = Players.GetPlayers().Single(x => x.Health > 0);
                 Console.WriteLine($"{winner.Name} has won the game!");
@@ -51,7 +59,6 @@ namespace TheCardGame.Library {
                 Console.WriteLine($"Only one player remaining, the game has ended.");
                 return true;
             }
-
 
             return false;
         }

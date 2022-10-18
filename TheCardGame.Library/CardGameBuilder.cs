@@ -8,7 +8,6 @@ namespace TheCardGame.Library {
         readonly IDeckManager deckMgr;
         bool playerQuit = false;
         private ICardGame _cardGame;
-        private IPlayer _player;
 
         public CardGameBuilder(IDeckManager deckManager, ICardGame cardGame){
             deckMgr = deckManager;
@@ -17,12 +16,10 @@ namespace TheCardGame.Library {
 
         public ICardGameBuilder AddPlayer(IPlayer player, string deckName)
         {
-            if (player is null)
-            {
+            if (player is null) {
                 throw new ArgumentNullException(nameof(player));
             }
-            if (string.IsNullOrWhiteSpace(deckName))
-            {
+            if (string.IsNullOrWhiteSpace(deckName)) {
                 throw new ArgumentException($"'{nameof(deckName)}' cannot be null or whitespace.", nameof(deckName));
             }
             if (deckMgr.GetDeck(deckName) is null) {
@@ -33,6 +30,9 @@ namespace TheCardGame.Library {
             
             Console.WriteLine($"Player {player.Name} has entered the game");
             AssignDeck(player, deckName);
+            if (_cardGame.Players == null) {
+                throw new Exception("Player list is not defined");
+            }
             _cardGame.Players.AddPlayer(player);
             return this;
         }
@@ -56,10 +56,15 @@ namespace TheCardGame.Library {
 
             _cardGame.InitialDrawCount = drawCount;
             return this;
-        }   
+        }
 
+        public void AddGamePhases(IGamePhases gamePhases) {
+            _cardGame.AddGamePhases(gamePhases);
+        }
 
 
         public ICardGame Build() => _cardGame;
+
+
     }
 }

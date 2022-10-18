@@ -1,17 +1,21 @@
-﻿namespace TheCardGame.Library {
-    public class GamePhases {
-        public GamePhase CurrentPhase { get; set; }
+﻿using TheCardGame.Infrastructure.Interfaces;
 
-        List<GamePhase> phases { get; set; }
+namespace TheCardGame.Library {
+    public class GamePhases : IGamePhases {
+        public IGamePhase CurrentPhase { get; set; } = new GamePhase();
+        private List<IGamePhase> _phases { get; set; } = new List<IGamePhase>();
 
-        public GamePhases() { }
+        public GamePhases() {}
 
-        public void AddPhase(GamePhase newPhase) { 
-            phases.Add(newPhase);
+        public void AddPhase(IGamePhase newPhase) {
+            _phases.Add(newPhase);
+        }
+        public void RemovePhase(IGamePhase phase) {
+            _phases.Remove(phase);
         }
 
-        public void SetCurrenPhase(GamePhase current) {
-            if (!phases.Contains(current)) {
+        public void SetCurrentPhase(IGamePhase current) {
+            if (!_phases.Contains(current)) {
                 throw new Exception($"Phase {current.Title} is not in game phase list");
             }
 
