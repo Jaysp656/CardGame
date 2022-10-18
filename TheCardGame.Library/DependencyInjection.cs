@@ -11,7 +11,7 @@ namespace TheCardGame.Library {
             builder.RegisterType<GameActions>().As<IGameActions>();
             builder.RegisterType<PlayerBuilder>().As<PlayerBuilder>();
             builder.RegisterType<Players>().As<IPlayers>();
-
+            builder.RegisterType<GamePhase>().As<IGamePhase>();
 
 
 

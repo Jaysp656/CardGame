@@ -13,6 +13,7 @@ namespace TheCardGame.Domain.Entities
         public IHand Hand { get; set; }
         public IGameActions Actions { get; set; }
         public IDeck Deck { get; set; }
+        public bool CurrentTurn { get; set; } = false;
         public bool Quit { get; set; } = false;
     }
 }

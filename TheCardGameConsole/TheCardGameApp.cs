@@ -17,14 +17,12 @@ namespace TheCardGame.Console
 
         public void Run()
         {
-            GameBuilder.AddGamePhases(GameDetails.GetGamePhases());
 
-            var playerOne = PlayerBuilder().Name("John").Health(10).Build();
+            var playerOne = PlayerBuilder().Name("John").Health(10).FirstPlayer().Build();
             var playerTwo = PlayerBuilder().Name("Jane").Health(10).Build();
 
             GameBuilder.AddPlayer(playerOne, "Dragon Deck")
-                .AddPlayer(playerTwo, "Knight Deck");
-
+                .AddPlayer(playerTwo, "Knight Deck");;
 
             //TODO: create class to configure aspects of game?
             //_manager.ConfigureGame()
@@ -35,7 +33,7 @@ namespace TheCardGame.Console
             cg.Start();
 
             playerOne.Actions.ListActions();
-            playerOne.Actions.DoAction("Draw Action", cg);
+            playerOne.Actions.DoAction("Draw Action");
         }
     }
 }

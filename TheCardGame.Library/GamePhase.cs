@@ -12,7 +12,7 @@ namespace TheCardGame.Library {
 
         private IGamePhase? _nextPhase = null;
 
-        public delegate IGamePhase Factory(string title, string description);
+        public delegate GamePhase Factory(string title, string description);
 
         public GamePhase(string title, string description) {
             Title = title ?? throw new ArgumentNullException(nameof(title));

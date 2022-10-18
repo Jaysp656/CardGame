@@ -9,6 +9,7 @@ namespace TheCardGame.Library {
         public static ContainerBuilder AddApplication(this ContainerBuilder builder) {
             builder.RegisterType<DeckManager>().As<IDeckManager>().SingleInstance();
             builder.RegisterType<CardGame>().As<ICardGame>();
+            builder.RegisterType<GameDetailsBuilder>().AsSelf();
 
             return builder;
         }
