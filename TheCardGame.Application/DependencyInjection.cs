@@ -1,7 +1,9 @@
 ﻿
 
 using Autofac;
+using Autofac.Features.ResolveAnything;
 using TheCardGame.Application.Details;
+using TheCardGame.Application.Details.Actions;
 using TheCardGame.Infrastructure.Interfaces;
 
 namespace TheCardGame.Library {
@@ -10,6 +12,9 @@ namespace TheCardGame.Library {
             builder.RegisterType<DeckManager>().As<IDeckManager>().SingleInstance();
             builder.RegisterType<CardGame>().As<ICardGame>();
             builder.RegisterType<GameDetailsBuilder>().AsSelf();
+
+            //TODO:? Wire up individual Action classes?
+            builder.RegisterType<DrawAction>().AsSelf();
 
             return builder;
         }

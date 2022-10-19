@@ -1,4 +1,5 @@
 ﻿using TheCardGame.Application.Details;
+using TheCardGame.Application.Details.Actions;
 using TheCardGame.Domain.Entities;
 using TheCardGame.Infrastructure.Interfaces;
 using TheCardGame.Library;
@@ -31,6 +32,8 @@ namespace TheCardGame.Console
             ICardGame cg = GameBuilder.Build();
 
             cg.Start();
+
+            PlayerActions.Draw(playerOne, playerOne.Deck);
 
             playerOne.Actions.ListActions();
             playerOne.Actions.DoAction("Draw Action");

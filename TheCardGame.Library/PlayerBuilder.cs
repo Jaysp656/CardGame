@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.ComponentModel;
-using TheCardGame.Application.Details;
-using TheCardGame.Domain.Entities;
-using TheCardGame.Infrastructure.Interfaces;
+﻿using TheCardGame.Infrastructure.Interfaces;
 
 namespace TheCardGame.Library {
     public class PlayerBuilder {

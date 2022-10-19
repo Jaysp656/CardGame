@@ -1,8 +1,5 @@
 ﻿using Autofac;
-using TheCardGame.Application.Details;
 using TheCardGame.Console;
-using TheCardGame.Domain.Entities;
-using TheCardGame.Infrastructure.Interfaces;
 using TheCardGame.Library;
 
 internal class Program
@@ -22,7 +19,6 @@ internal class Program
         builder.AddLibrary();
 
         return builder.Build();
-
     }
 
 }

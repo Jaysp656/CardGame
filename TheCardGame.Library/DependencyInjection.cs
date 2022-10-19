@@ -13,8 +13,6 @@ namespace TheCardGame.Library {
             builder.RegisterType<Players>().As<IPlayers>();
             builder.RegisterType<GamePhase>().As<IGamePhase>();
 
-
-
             return builder;
         }
 
