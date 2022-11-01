@@ -5,6 +5,7 @@
         IEnumerable<ICard> Cards { get; }
 
         void AddCard(ICard newCard);
-        void RemoveCard(ICard card);
+        ICard RemoveCard(ICard card);
+        ICard RemoveCard(int v);
     }
 }

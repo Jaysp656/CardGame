@@ -6,6 +6,6 @@ namespace TheCardGame.Infrastructure.Interfaces
     {
         public string Name { get; }
         public string Description { get; }
-        void DoAction();
+        public Func<object[], bool> DoAction { get; }
     }
 }

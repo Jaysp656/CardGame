@@ -1,4 +1,6 @@
-﻿using TheCardGame.Infrastructure.Interfaces;
+﻿using TheCardGame.Application.Details;
+using TheCardGame.Domain.Entities;
+using TheCardGame.Infrastructure.Interfaces;
 
 namespace TheCardGame.Library {
     public class PlayerBuilder {
@@ -8,13 +10,11 @@ namespace TheCardGame.Library {
         private bool _currentTurn = false;
         private IGameActions _gameActions;
 
-        public delegate PlayerBuilder Factory();
-
-        public PlayerBuilder(IPlayer player, IHand hand, IDeck deck, IGameActions gameActions) {
-            _player = player ?? throw new ArgumentNullException(nameof(player));
-            _hand = hand ?? throw new ArgumentNullException(nameof(hand));
-            _deck = deck ?? throw new ArgumentNullException(nameof(deck));
-            _gameActions = gameActions ?? throw new ArgumentNullException(nameof(gameActions));
+        public PlayerBuilder() {
+            _player = new Player();
+            _hand = new Hand();
+            _deck = new Deck();
+            _gameActions = new GameActions(); 
         }
 
         public PlayerBuilder Name(string name) {

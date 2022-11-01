@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TheCardGame.Infrastructure\TheCardGame.Infrastructure.csproj" />
   </ItemGroup>
 

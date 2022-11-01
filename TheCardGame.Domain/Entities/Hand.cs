@@ -13,9 +13,37 @@ namespace TheCardGame.Domain.Entities
             (_cards as List<ICard>).Add(newCard);
         }
 
-        public void RemoveCard(ICard card)
-        {
-            (_cards as List<ICard>).Remove(card);
+        public ICard RemoveCard(ICard card){
+            try {
+                (_cards as List<ICard>).Remove(card);
+                return card;
+            }
+            catch(Exception) { 
+                throw;
+            }            
+        }
+        public ICard RemoveCard(int cardRemoveIndex) {
+            try {
+                ICard removedCard = _cards.ElementAtOrDefault(cardRemoveIndex);
+                _cards.RemoveAt(cardRemoveIndex);
+                return removedCard;
+            }
+            catch(Exception) { 
+                throw;
+            }   
+        }
+
+        public IEnumerable<ICard> RemoveCards(int cardRemoveCount) {
+            try {
+                if(_cards.Count < cardRemoveCount) { return new List<ICard>(); }
+
+                IEnumerable<ICard> removedCards = _cards.Take(cardRemoveCount);
+                _cards.RemoveRange(0, cardRemoveCount);
+                return removedCards;
+            }
+            catch(Exception) { 
+                throw;
+            }    
         }
     }
 }

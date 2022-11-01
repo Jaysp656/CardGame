@@ -7,21 +7,17 @@ namespace TheCardGame.Library {
         int ICardGame.InitialDrawCount { get; set; }
 
         public int InitialDrawCount = 0;
-        private readonly IDeckManager _deckManager;
+        private IDeckManager _deckManager;
         private GamePhases _gamePhases = new();
 
-        public CardGame(IDeckManager deckMgr, IPlayers players) {
-            Players = players ?? throw new ArgumentNullException(nameof(players));
-            _deckManager = deckMgr ?? throw new ArgumentNullException(nameof(deckMgr));
+        public CardGame(IPlayers _players, IDeckManager deckMgr) {
+            Players = _players;
+            _deckManager = deckMgr;
         }
 
         public void Start() {
             if (Players == null) { throw new Exception("Players has not been initialized"); }
             Console.WriteLine("Let the games begin!");
-
-            Players.ShuffleDecks();
-            Players.DrawCards(InitialDrawCount);
-
             //IPlayer currentPlayer = players.;
             //while (!isGameEnded()) {
             //}
@@ -29,10 +25,18 @@ namespace TheCardGame.Library {
             NextPhase();
         }
 
+        public void AddPlayers(IPlayers players) { 
+            Players = players;
+        }
+
+        public void AddDeckManager(IDeckManager deckMgr) {
+            _deckManager = deckMgr;
+        }
+
         public void DoAction() { }
 
         public void NextPhase() {
-            _gamePhases.CurrentPhase.Start();
+            _gamePhases.SetNextPhase();
             Players.CurrentPlayer.Actions = _gamePhases.CurrentPhase.GetPlayerActions(true);
         }
 

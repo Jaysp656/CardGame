@@ -3,13 +3,13 @@
 namespace TheCardGame.Library {
     public class CardGameBuilder : ICardGameBuilder
     {
+        readonly IPlayers _players;
         readonly IDeckManager deckMgr;
-        bool playerQuit = false;
-        private ICardGame _cardGame;        
+        private IGamePhases _gamePhases;
 
-        public CardGameBuilder(IDeckManager deckManager, ICardGame cardGame){
+        public CardGameBuilder(Players players, IDeckManager deckManager) {
+            _players = players;
             deckMgr = deckManager;
-            _cardGame = cardGame;
         }
 
         public ICardGameBuilder AddPlayer(IPlayer player, string deckName)
@@ -28,10 +28,10 @@ namespace TheCardGame.Library {
             
             Console.WriteLine($"Player {player.Name} has entered the game");
             AssignDeck(player, deckName);
-            if (_cardGame.Players == null) {
+            if (_players == null) {
                 throw new Exception("Player list is not defined");
             }
-            _cardGame.Players.AddPlayer(player);
+            _players.AddPlayer(player);
             return this;
         }
 
@@ -47,21 +47,12 @@ namespace TheCardGame.Library {
             return this;
         }
 
-        public ICardGameBuilder InitialCardDrawCount(int drawCount = 5) {
-            if (drawCount < 0) {
-                throw new Exception("Card Draw count can't be below 0");
-            }
-
-            _cardGame.InitialDrawCount = drawCount;
-            return this;
-        }
-
         public void AddGamePhases(IGamePhases gamePhases) {
-            _cardGame.AddGamePhases(gamePhases);
+            _gamePhases =  gamePhases;
         }
 
 
-        public ICardGame Build() => _cardGame;
+        public ICardGame Build() => new CardGame(_players, deckMgr);
 
 
     }

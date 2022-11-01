@@ -23,10 +23,10 @@ namespace TheCardGame.Application.Details {
 
 
         //TODO: need better implementation of actions. Need a way to pass different parameters based on the action...
-        public void DoAction(string actionName) {
+        public void DoAction(string actionName, params object[] p) {
             if (Actions.ContainsKey(actionName)) {
                 Actions.TryGetValue(actionName, out IGameAction selectedAction);
-                selectedAction.DoAction();
+                selectedAction?.DoAction.Invoke(p);
             }
 
         }

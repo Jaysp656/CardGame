@@ -6,21 +6,20 @@ namespace TheCardGame.Application.Details
 {
     public class GameDetailsBuilder
     {
-        private readonly GamePhase.Factory _phaseFactory;
-        public GameDetailsBuilder(GamePhase.Factory phaseFac) {
-            _phaseFactory = phaseFac ?? throw new ArgumentNullException(nameof(phaseFac));
+        public static IGamePhases GetGamePhases()
+        {
+            GamePhases gamePhases = new();
+            gamePhases.AddPhase(GetDrawPhase());
+            return gamePhases;
         }
 
-        public IGamePhases GetGamePhases(IGamePhases phases, ICardGame cardGame)
-        {
+        private static GamePhase GetDrawPhase() {
+            GamePhase gamePhase = new();
 
-            IGamePhase drawPhase = _phaseFactory("Drawing Phase", "Current player draws a card");
-            drawPhase.AddPlayerAction(new DrawAction(cardGame), true);
+            gamePhase.AddPlayerAction(new DrawAction(), true);
 
-            phases.AddPhase(drawPhase);
-            phases.CurrentPhase = drawPhase;
 
-            return phases;
-        }    
+            return gamePhase;
+        }
     }
 }

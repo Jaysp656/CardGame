@@ -8,35 +8,35 @@ namespace TheCardGame.Console
 {
     public class TheCardGameApp
     {
-        readonly ICardGameBuilder GameBuilder;
-        readonly PlayerBuilder.Factory PlayerBuilder;
-        public TheCardGameApp(ICardGameBuilder gameBuilder, PlayerBuilder.Factory playerBuilder)
-        {
-            GameBuilder = gameBuilder ?? throw new ArgumentNullException(nameof(gameBuilder));
-            PlayerBuilder = playerBuilder ?? throw new ArgumentNullException(nameof(playerBuilder));
+
+        public TheCardGameApp() {
         }
 
         public void Run()
         {
+            DeckManager deckManager = new();
+            Players players = new();
 
-            var playerOne = PlayerBuilder().Name("John").Health(10).FirstPlayer().Build();
-            var playerTwo = PlayerBuilder().Name("Jane").Health(10).Build();
+            var playerOne = new PlayerBuilder().Name("John").Health(10).FirstPlayer().Build();
+            players.AddPlayer(playerOne);
+            var playerTwo = new PlayerBuilder().Name("Jane").Health(10).Build();
+            players.AddPlayer(playerTwo);            
 
+            ICardGameBuilder GameBuilder = new CardGameBuilder(players, deckManager);
             GameBuilder.AddPlayer(playerOne, "Dragon Deck")
-                .AddPlayer(playerTwo, "Knight Deck");;
+                .AddPlayer(playerTwo, "Knight Deck");
 
             //TODO: create class to configure aspects of game?
-            //_manager.ConfigureGame()
-            GameBuilder.InitialCardDrawCount(5);     
+            //_manager.ConfigureGame()            
+            IGamePhases gamePhases = GameDetailsBuilder.GetGamePhases();
             
             ICardGame cg = GameBuilder.Build();
-
+            cg.AddGamePhases(gamePhases);
             cg.Start();
 
-            PlayerActions.Draw(playerOne, playerOne.Deck);
 
             playerOne.Actions.ListActions();
-            playerOne.Actions.DoAction("Draw Action");
+            playerOne.Actions.DoAction("Draw Card", playerOne, playerOne.Deck, 1);
         }
     }
 }
