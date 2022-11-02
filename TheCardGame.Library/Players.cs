@@ -10,10 +10,12 @@ namespace TheCardGame.Library {
 
         public void AddPlayer(IPlayer player) {
             if(player == null) throw new ArgumentNullException(nameof(player));
-            
+            player.Id = _players.Count; //TODO: get this from DB table?
             _players.Add(player);
 
-            CurrentPlayer ??= _players[0];
+            if (player.CurrentTurn) {
+                CurrentPlayer ??= player;
+            }            
         }
 
         public void RemovePlayer(IPlayer player) {
@@ -29,5 +31,3 @@ namespace TheCardGame.Library {
         }
     }
 }
-
-

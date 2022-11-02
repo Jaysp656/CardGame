@@ -1,6 +1,6 @@
 ﻿namespace TheCardGame.Domain.Entities
 {
-    internal class GameBoard
+    public class GameBoard : IGameBoard
     {
     }
 }

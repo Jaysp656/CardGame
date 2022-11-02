@@ -47,8 +47,8 @@ namespace TheCardGame.Library {
             IGameActions actions = PlayerActions ??= new GameActions();
             if (isCurrentPlayerAction) {
                 actions = CurrentPlayerActions ??= new GameActions();
+                actions.CurrentPlayerActions = true;
             }
-
             return actions;
         }
     }

@@ -4,6 +4,7 @@ using TheCardGame.Infrastructure.Interfaces;
 namespace TheCardGame.Application.Details {
     public class GameActions : IGameActions {
         private Dictionary<string, IGameAction> Actions { get; set; } = new Dictionary<string, IGameAction>();
+        public bool CurrentPlayerActions { get; set; } = false;
 
         public GameActions() {}
 

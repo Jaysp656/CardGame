@@ -6,37 +6,31 @@ using TheCardGame.Library;
 
 namespace TheCardGame.Console
 {
-    public class TheCardGameApp
+    public static class TheCardGameApp
     {
-
-        public TheCardGameApp() {
-        }
-
-        public void Run()
+        public static void Run()
         {
             DeckManager deckManager = new();
-            Players players = new();
+            IGamePhases gamePhases = GameDetailsBuilder.GetGamePhases();
+            Players players = new();                     
 
+            ICardGameBuilder GameBuilder = new CardGameBuilder(gamePhases, deckManager, players);
+            
             var playerOne = new PlayerBuilder().Name("John").Health(10).FirstPlayer().Build();
-            players.AddPlayer(playerOne);
             var playerTwo = new PlayerBuilder().Name("Jane").Health(10).Build();
-            players.AddPlayer(playerTwo);            
 
-            ICardGameBuilder GameBuilder = new CardGameBuilder(players, deckManager);
-            GameBuilder.AddPlayer(playerOne, "Dragon Deck")
-                .AddPlayer(playerTwo, "Knight Deck");
+            GameBuilder.AddPlayer(playerOne, 1)
+                .AddPlayer(playerTwo, 2);
 
             //TODO: create class to configure aspects of game?
-            //_manager.ConfigureGame()            
-            IGamePhases gamePhases = GameDetailsBuilder.GetGamePhases();
-            
+            //_manager.ConfigureGame()
             ICardGame cg = GameBuilder.Build();
             cg.AddGamePhases(gamePhases);
             cg.Start();
 
 
-            playerOne.Actions.ListActions();
-            playerOne.Actions.DoAction("Draw Card", playerOne, playerOne.Deck, 1);
+            cg.GetPlayerActions(playerOne.Id);
+            cg.DoAction("Draw Card", playerOne.Id, 1);
         }
     }
 }

@@ -29,12 +29,8 @@ namespace TheCardGame.Library {
             _player.Hand = hand;
             return this;
         }
-        public PlayerBuilder Deck(IDeck deck) {
-            _player.Deck = deck;
-            return this;
-        }
-        public PlayerBuilder Actions(IGameActions actions) {
-            _player.Actions = actions;
+        public PlayerBuilder Deck(int deckId) {
+            _player.DeckId = deckId;
             return this;
         }
 
@@ -44,9 +40,8 @@ namespace TheCardGame.Library {
         }
 
         public IPlayer Build() {
-            _player.Deck = _deck;
+            _player.DeckId = _deck.Id;
             _player.Hand = _hand;
-            _player.Actions = _gameActions;
             _player.CurrentTurn = _currentTurn;
             return _player;
         }

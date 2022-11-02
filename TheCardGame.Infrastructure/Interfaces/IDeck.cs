@@ -2,10 +2,9 @@
 {
     public interface IDeck
     {
-        string Name {get; set;}
-        string Description {get; set;}
-        //void Shuffle();
-        //IEnumerable<ICard> Draw();
-        Queue<ICard> Cards {get; set;}
+        int? Id { get; set; }
+        string? Name { get; set; }
+        string? Description { get; set; }
+        Queue<ICard>? Cards { get; set; }
     }
 }

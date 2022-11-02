@@ -1,58 +1,57 @@
-﻿using TheCardGame.Infrastructure.Interfaces;
+﻿using TheCardGame.Domain;
+using TheCardGame.Infrastructure.Interfaces;
 
 namespace TheCardGame.Library {
     public class CardGameBuilder : ICardGameBuilder
     {
-        readonly IPlayers _players;
-        readonly IDeckManager deckMgr;
-        private IGamePhases _gamePhases;
+        private readonly ICardGameInfo? _cardGameInfo;
+        private readonly IGamePhases? _gamePhases;
 
-        public CardGameBuilder(Players players, IDeckManager deckManager) {
-            _players = players;
-            deckMgr = deckManager;
+        public CardGameBuilder(IGamePhases gamePhases, IDeckManager deckManager, IPlayers player) {
+            _cardGameInfo = new CardGameInfo();
+            _cardGameInfo.Players = player ?? throw new ArgumentNullException(nameof(player));
+            _cardGameInfo.DeckManager = deckManager ?? throw new ArgumentNullException(nameof(deckManager));
+            _cardGameInfo.Phases = gamePhases ?? throw new ArgumentNullException(nameof(gamePhases));
         }
 
-        public ICardGameBuilder AddPlayer(IPlayer player, string deckName)
-        {
+        public ICardGameBuilder AddPlayer(IPlayer player, int deckId) {
             if (player is null) {
                 throw new ArgumentNullException(nameof(player));
             }
-            if (string.IsNullOrWhiteSpace(deckName)) {
-                throw new ArgumentException($"'{nameof(deckName)}' cannot be null or whitespace.", nameof(deckName));
+            if (deckId == 0) {
+                throw new ArgumentNullException(nameof(deckId));
             }
-            if (deckMgr.GetDeck(deckName) is null) {
-                Console.WriteLine($"Can not find deck named: {deckName}");
+            if (_cardGameInfo.DeckManager.GetDeck(deckId) is null) {
+                Console.WriteLine($"Can not find deck of ID: {deckId}");
                 return this;
             }
 
-            
+
             Console.WriteLine($"Player {player.Name} has entered the game");
-            AssignDeck(player, deckName);
-            if (_players == null) {
+            AssignDeck(player, deckId);
+            if (_cardGameInfo.Players == null) {
                 throw new Exception("Player list is not defined");
             }
-            _players.AddPlayer(player);
+            _cardGameInfo.Players.AddPlayer(player);
             return this;
         }
 
-        public ICardGameBuilder AssignDeck(IPlayer player, string deckName)
-        {
-            if (deckMgr.HasDeck(deckName)) {
-                player.Deck = deckMgr.GetDeck(deckName);
-                Console.WriteLine($"Player {player.Name} has been assigned the {deckMgr.GetDeck(deckName)?.Name} deck.");
+        public ICardGameBuilder AssignDeck(IPlayer player, int deckId) {
+            if (_cardGameInfo.DeckManager.HasDeck(deckId)) {
+                player.DeckId = deckId;
+                Console.WriteLine($"Player {player.Name} has been assigned the {_cardGameInfo.DeckManager.GetDeck(deckId)?.Name} deck.");
             }
             else
-                throw new Exception($"Deck \"{deckName}\" not found");
-
+                throw new Exception($"Deck \"{deckId}\" not found");
             return this;
         }
 
         public void AddGamePhases(IGamePhases gamePhases) {
-            _gamePhases =  gamePhases;
+            _cardGameInfo.Phases =  gamePhases;
         }
 
 
-        public ICardGame Build() => new CardGame(_players, deckMgr);
+        public ICardGame Build() => new CardGame(_cardGameInfo);
 
 
     }
