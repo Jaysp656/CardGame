@@ -1,9 +1,11 @@
-﻿namespace TheCardGame.Infrastructure.Interfaces
+﻿using TheCardGame.Library.Actions;
+
+namespace TheCardGame.Infrastructure.Interfaces
 {
     public interface IGameActions
     {
-        bool CurrentPlayerActions { get; set; }
-
+        Dictionary<string, IGameAction> Actions { get; set; }
+        public GameActionType Type { get; }
         public bool Add(IGameAction newAction);
         public void Remove (IGameAction newAction);
         public void ListActions();

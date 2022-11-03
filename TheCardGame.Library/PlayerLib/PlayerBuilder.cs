@@ -1,8 +1,8 @@
-﻿using TheCardGame.Application.Details;
-using TheCardGame.Domain.Entities;
+﻿using TheCardGame.Domain.Entities;
 using TheCardGame.Infrastructure.Interfaces;
+using TheCardGame.Library.Actions;
 
-namespace TheCardGame.Library {
+namespace TheCardGame.Library.PlayerLib {
     public class PlayerBuilder {
         private IPlayer _player;
         private IHand _hand;
@@ -14,7 +14,6 @@ namespace TheCardGame.Library {
             _player = new Player();
             _hand = new Hand();
             _deck = new Deck();
-            _gameActions = new GameActions(); 
         }
 
         public PlayerBuilder Name(string name) {
@@ -34,7 +33,7 @@ namespace TheCardGame.Library {
             return this;
         }
 
-        public PlayerBuilder FirstPlayer() { 
+        public PlayerBuilder FirstPlayer() {
             _currentTurn = true;
             return this;
         }

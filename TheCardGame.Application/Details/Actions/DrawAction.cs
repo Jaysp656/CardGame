@@ -1,10 +1,12 @@
 ﻿using TheCardGame.Infrastructure.Interfaces;
+using TheCardGame.Library.Actions;
 
 namespace TheCardGame.Application.Details.Actions {
-    public class DrawAction : IGameAction{
+    public class DrawAction : IGameAction, IGamePlayerAction{
         public string Name => "Draw Card";
         public string Description => "Player draws card from deck.";
-
+        public bool isCurrentPlayerAction { get; set; }
+        public GameActionType Type => GameActionType.Player;
         Func<object[], bool> IGameAction.DoAction => Action;
 
         private bool Action(params object[] p ) {
@@ -12,7 +14,7 @@ namespace TheCardGame.Application.Details.Actions {
             (IPlayer player, IDeck deck) = ParseParams(p);
 
             //for (int i = 0; i < drawCount; i++) {
-                var card = deck.Cards.Dequeue();
+                var card = deck?.Cards?.Dequeue();
                 player.Hand.AddCard(card);
             //}
             return true;
@@ -23,6 +25,8 @@ namespace TheCardGame.Application.Details.Actions {
             ICardGameInfo cardGameInfo = (ICardGameInfo)p[0];
 
             IPlayer player = cardGameInfo.Players.GetPlayers().SingleOrDefault(x => x.Id == (int)p[1]);
+
+            //TODO: need to handle current player better
             IDeck deck = cardGameInfo.DeckManager.GetDeck((int)player.DeckId);
 
             return (player, deck);

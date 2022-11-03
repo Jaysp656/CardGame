@@ -1,6 +1,7 @@
 ﻿using TheCardGame.Application.Details.Actions;
 using TheCardGame.Infrastructure.Interfaces;
-using TheCardGame.Library;
+using TheCardGame.Library.Actions;
+using TheCardGame.Library.Phases;
 
 namespace TheCardGame.Application.Details
 {
@@ -17,7 +18,6 @@ namespace TheCardGame.Application.Details
             GamePhase gamePhase = new();
 
             gamePhase.AddPlayerAction(new DrawAction(), true);
-
 
             return gamePhase;
         }

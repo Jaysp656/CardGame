@@ -1,4 +1,6 @@
-﻿namespace TheCardGame.Infrastructure.Interfaces {
+﻿using TheCardGame.Library.Actions;
+
+namespace TheCardGame.Infrastructure.Interfaces {
     public interface IGamePhase {
         string Description { get; set; }
         string Title { get; set; }
@@ -7,6 +9,6 @@
         IGamePhase? Next();
         void SetNextPhase(IGamePhase next);
         void Start();
-        IGameActions GetPlayerActions(bool isCurrentPlayerAction);
+        IGameActions GetActionsOfType(GameActionType type);
     }
 }

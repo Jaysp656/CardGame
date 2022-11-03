@@ -1,12 +1,12 @@
-﻿using TheCardGame.Application.Details;
-using TheCardGame.Domain.Entities;
-using TheCardGame.Infrastructure.Interfaces;
+﻿using TheCardGame.Infrastructure.Interfaces;
+using TheCardGame.Library.Actions;
+using TheCardGame.Library.Phases;
 
-namespace TheCardGame.Library {
+namespace TheCardGame.Library
+{
     public class CardGame : ICardGame {
         int ICardGame.InitialDrawCount { get; set; }
         public ICardGameInfo CardGameInfo { get; }
-        private List<IGameActions> Actions { get; set; } = new List<IGameActions>();
 
         public int InitialDrawCount = 0;
 
@@ -32,16 +32,20 @@ namespace TheCardGame.Library {
             //How to handle the parameters of each action if they vary between each one?
             //Maybe each action's parameters can be saved somewhere and retrieved for use when the action is run?
             IPlayer? player = CardGameInfo.Players.GetPlayers().SingleOrDefault(x => x.Id == playerId);
+            var type = player.CurrentTurn ? GameActionType.CurrentPlayer : GameActionType.Player;
 
-            Actions.SingleOrDefault(x => x.CurrentPlayerActions == player.CurrentTurn).DoAction(actionName, CardGameInfo, playerId, DeckId); //TODO: need a way to pass player or deck for Draw but not other actions?
+            IGameActions playerActions = CardGameInfo.Phases.CurrentPhase.GetActionsOfType(type);
+            playerActions.DoAction(actionName, CardGameInfo, playerId, DeckId);
+
         }
 
         public void GetPlayerActions(int playerId) {
             IPlayer? player = CardGameInfo.Players.GetPlayers().SingleOrDefault(x => x.Id == playerId);
             Console.WriteLine($"Listing player {player?.Id} actions: ");
-            var actions = CardGameInfo.Phases.CurrentPhase.GetPlayerActions(player.CurrentTurn);
 
-            actions.ListActions();
+            var type = player.CurrentTurn ? GameActionType.CurrentPlayer : GameActionType.Player;
+            CardGameInfo.Phases.CurrentPhase.GetActionsOfType(type).ListActions();
+
         }
 
         public void NextPhase() {
@@ -49,9 +53,9 @@ namespace TheCardGame.Library {
             CardGameInfo.Phases.SetNextPhase();
 
             //TODO: need to combine these together
-            Actions.Clear();
-            Actions.Add(CardGameInfo.Phases.CurrentPhase.GetPlayerActions(true));
-            Actions.Add(CardGameInfo.Phases.CurrentPhase.GetPlayerActions(false));
+            //Actions.Clear();
+            //Actions.Add(CardGameInfo.Phases.CurrentPhase.GetPlayerActions(true));
+            //Actions.Add(CardGameInfo.Phases.CurrentPhase.GetPlayerActions(false));
         }
 
         private void CheckEndGameConditions() {

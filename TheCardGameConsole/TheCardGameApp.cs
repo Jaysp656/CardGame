@@ -1,11 +1,9 @@
 ﻿using TheCardGame.Application.Details;
-using TheCardGame.Application.Details.Actions;
-using TheCardGame.Domain.Entities;
 using TheCardGame.Infrastructure.Interfaces;
 using TheCardGame.Library;
+using TheCardGame.Library.PlayerLib;
 
-namespace TheCardGame.Console
-{
+namespace TheCardGame.Console {
     public static class TheCardGameApp
     {
         public static void Run()
